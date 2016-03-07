@@ -8,11 +8,13 @@
     "start": "node index.js"
   },
   "author": "ertrzyiks <mateusz.derks@gmail.com>",
+  "engine": "node 4.2.x",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.34",
+    "dotenv": "^2.0.0",
     "express": "^4.13.3",
-    "ghost": "^0.6.4",
+    "ghost": "^0.7.8",
     "ghost-cloudinary-store": "^1.0.2"
   }
 }

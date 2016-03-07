@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 var express = require('express'),
     ghost = require('ghost'),
     path = require('path'),

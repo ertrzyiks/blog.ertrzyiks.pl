@@ -27,3 +27,4 @@ build/Release
 node_modules
 ghost-dev.db
 content/images
+.env
