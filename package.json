@@ -8,7 +8,9 @@
     "start": "node index.js"
   },
   "author": "ertrzyiks <mateusz.derks@gmail.com>",
-  "engine": "node 4.2.x",
+  "engines": {
+    "node": "4.2.x"
+  },
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.34",
