@@ -1,4 +1,4 @@
-box: node
+box: node:4.4.4
 build:
   steps:
     - npm-install
