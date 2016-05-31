@@ -272,3 +272,11 @@ footer a:hover {
 		margin-left: 2em;
 	}
 }
+
+/* Custom */
+.post-image {
+	height: 180px;
+	object-fit: contain;
+	display: block;
+	margin: 0 auto;
+}
