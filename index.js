@@ -8,7 +8,7 @@ var express = require('express'),
 
 var gatherStats = function () {
     return require('./middlewares/statsd')({
-        host: process.env.STATSD_HOST || '46.101.162.17',
+        host: process.env.STATSD_HOST || '127.0.0.1',
         prefix: process.env.STATSD_PREFIX || 'blog-ertrzyiks-pl'
     })
 }
