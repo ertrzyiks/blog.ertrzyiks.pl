@@ -6,9 +6,23 @@ var express = require('express'),
 
     app = express();
 
+var gatherStats = function () {
+    return require('./middlewares/statsd')({
+        host: process.env.STATSD_HOST || '46.101.162.17',
+        prefix: process.env.STATSD_PREFIX || 'blog-ertrzyiks-pl'
+    })
+}
+
 ghost({
     config: path.join(__dirname, 'config.js')
 }).then(function (ghostServer) {
-    app.use(ghostServer.rootApp);
+
+    []
+      .concat((process.env.NODE_ENV === 'production') ? [gatherStats()] : [])
+      .concat([ghostServer.rootApp])
+      .map(function (middleware) {
+          app.use(middleware)
+      })
+
     ghostServer.start(app);
 });
