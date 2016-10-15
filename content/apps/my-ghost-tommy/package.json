@@ -2,7 +2,7 @@
   "name":"my-ghost-tommy",
   "version": "0.0.1",
   "dependencies": {
-    "ghost-app": "0.0.3"
+    "ghost-app": "tryghost/Ghost-App#4998153"
   },
   "ghost": {
     "permissions": {
