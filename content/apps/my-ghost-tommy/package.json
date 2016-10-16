@@ -6,7 +6,7 @@
   },
   "ghost": {
     "permissions": {
-      "filters": ["prePostsRender"]
+      "filters": ["prePostsRender", "ghost_head", "ghost_foot"]
     }
   }
 }
