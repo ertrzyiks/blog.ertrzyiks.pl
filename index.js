@@ -5,7 +5,7 @@ var express = require('express'),
     path = require('path'),
 
     app = express(),
-    tommyAssets = require('./middlewares/tommy')
+    tommyAssets = require('./content/apps/my-ghost-tommy/middleware')
 
 var gatherStats = function () {
     return require('./middlewares/statsd')({
@@ -25,5 +25,5 @@ ghost({
     app.use('/assets/', tommyAssets)
     app.use(ghostServer.rootApp)
 
-    ghostServer.start(app);
+    ghostServer.start(app)
 });
