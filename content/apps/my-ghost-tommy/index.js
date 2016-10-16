@@ -1,6 +1,6 @@
-var App = require('ghost-app');
+const App = require('ghost-app');
 
-var BASE_URL = process.env.BASE_TOMMY_URL || 'http://tommy-web.ertrzyiks.me/'
+const BASE_URL = process.env.BASE_TOMMY_URL || 'http://tommy-web.ertrzyiks.me/'
 
 function renderTommyIframe(slug) {
   return `
@@ -32,4 +32,4 @@ var MyApp = App.extend({
   }
 });
 
-module.exports = MyApp;
+module.exports = MyApp

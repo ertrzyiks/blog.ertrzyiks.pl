@@ -4,7 +4,8 @@ var express = require('express'),
     ghost = require('ghost'),
     path = require('path'),
 
-    app = express();
+    app = express(),
+    tommyAssets = require('./middlewares/tommy')
 
 var gatherStats = function () {
     return require('./middlewares/statsd')({
@@ -17,12 +18,12 @@ ghost({
     config: path.join(__dirname, 'config.js')
 }).then(function (ghostServer) {
 
-    []
-      .concat((process.env.NODE_ENV === 'production') ? [gatherStats()] : [])
-      .concat([ghostServer.rootApp])
-      .map(function (middleware) {
-          app.use(middleware)
-      })
+    if (process.env.NODE_ENV === 'production') {
+      app.use(gatherStats())
+    }
+
+    app.use('/assets/', tommyAssets)
+    app.use(ghostServer.rootApp)
 
     ghostServer.start(app);
 });
