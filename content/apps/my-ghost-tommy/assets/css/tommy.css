@@ -26,7 +26,7 @@
   right: 15px;
   top: 6px;
   transition: opacity 200ms;
-  transition-delay: 300ms;
+  transition-delay: 500ms;
 }
 
 .post-iframe_wrapper--tommy:hover .fa {
