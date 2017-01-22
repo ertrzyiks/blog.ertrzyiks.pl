@@ -26,4 +26,7 @@ ghost({
     app.use(ghostServer.rootApp)
 
     ghostServer.start(app)
-});
+}).catch(function (err) {
+    console.error(err)
+    process.exit(1)
+})
