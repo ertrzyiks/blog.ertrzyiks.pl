@@ -1,0 +1,19 @@
+{{!< default}}
+
+<section class="main">
+  <header class="category-header">
+      <div class="category-header_content">
+        <h1 class="category-title">
+          <span class="category-title_prefix">Posts by</span>
+          {{author.name}}
+        </h1>
+
+        <p>{{author.bio}}</p>
+      </div>
+    </header>
+
+  {{> postlist}}
+
+  {{pagination}}
+</section>
+

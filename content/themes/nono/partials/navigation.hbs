@@ -1,0 +1,9 @@
+<nav class="menu-wrapper">
+  <ul class="menu-list">
+    {{#foreach navigation}}
+      <li class="menu-list_item">
+        <a class="menu-list_link" href="{{url absolute="true"}}">{{label}}</a>
+      </li>
+    {{/foreach}}
+  </ul>
+</nav>
