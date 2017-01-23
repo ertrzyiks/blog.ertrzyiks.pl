@@ -1,14 +1,28 @@
-box: node:4.4.4
+box: node:6.9.1
 build:
   steps:
-    - npm-install
+    - script:
+      name: install yarn
+      code: |
+        npm install -g yarn@0.19
+
+    - script:
+      name: set yarn cache
+      code: |
+        export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
+
+    - script:
+      name: install dependencies
+      code: |
+        HOME=$YARN_CACHE yarn
+
     - npm-test
 
     - script:
         name: echo nodejs information
         code: |
           echo "node version $(node -v) running"
-          echo "npm version $(npm -v) running"
+          echo "yarn version $(yarn -V) running"
 
 deploy:
   steps:
