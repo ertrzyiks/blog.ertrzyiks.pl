@@ -3,6 +3,7 @@ require('dotenv').load();
 var express = require('express'),
     ghost = require('ghost'),
     path = require('path'),
+    helpers = require('./helpers')
 
     app = express(),
     tommyAssets = require('./content/apps/my-ghost-tommy/middleware')
@@ -14,12 +15,29 @@ var gatherStats = function () {
     })
 }
 
+var useWebpackDevServer = function () {
+    var webpackDevMiddleware = require("webpack-dev-middleware")
+    var webpack = require("webpack")
+    var webpackConfig = require("./webpack.config")
+    var compiler = webpack(webpackConfig)
+
+    return webpackDevMiddleware(compiler, {
+        publicPath: '/dev/assets'
+    })
+}
+
+helpers.register()
+
 ghost({
     config: path.join(__dirname, 'config.js')
 }).then(function (ghostServer) {
 
     if (process.env.NODE_ENV === 'production') {
       app.use(gatherStats())
+    }
+
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === '') {
+        app.use(useWebpackDevServer())
     }
 
     app.use('/assets/', tommyAssets)

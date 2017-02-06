@@ -1,0 +1,32 @@
+{{#foreach posts}}
+<section id="post-{{id}}" class="post">
+	<h3 class="post-title">
+	  <a href="{{url}}">{{title}}</a>
+
+    <span class="post-date">{{date published_at format='MMMM D, YYYY'}}</span>
+  </h3>
+
+  <div class="post-content">
+    {{#if image}}
+    <div class="post-thumbnail">
+      <img
+        class="post-thumbnail_image"
+        src="{{thumbnail image}}"
+        alt="the hand made image dedicated to the post number {{id}}" />
+    </div>
+    {{/if}}
+
+    <div class="post-excerpt">
+      {{excerpt words="42"}}…
+
+      <div class="post-tags">{{tags separator=" &middot; "}}</div>
+    </div>
+
+  </div>
+
+
+  {{#if featured}}
+    <span class="separator"> &middot; </span><i class="fa fa-star-o feature-star"></i>
+  {{/if}}
+</section>
+{{/foreach}}

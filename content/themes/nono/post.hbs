@@ -1,0 +1,35 @@
+{{!< default}}
+
+<section class="main">
+  {{#post}}
+
+  <article id="post-{{id}}" class="single_post">
+    <header class="single_post-header">
+      {{#if image}}
+        <div class="single_post-thumbnail">
+          <img
+            class="single_post-thumbnail_image"
+            src="{{thumbnail image}}"
+            alt="a hand made image dedicated to the post number {{id}}" />
+        </div>
+      {{/if}}
+      <div class="single_post-header_content">
+        <h1 class="single_post-title">{{title}}</h1>
+
+        <span class="single_post-header_date">
+          {{date published_at format='MMMM D, YYYY'}}
+          <span class="taglist">{{tags separator=" &middot; " prefix=" &middot; "}}</span>
+        </span>
+      </div>
+    </header>
+
+    {{content}}
+
+    {{> share}}
+    {{> comments}}
+  </article>
+
+  <script async defer src="{{asset "/js/prism.min.js"}}"></script>
+
+  {{/post}}
+</section>
