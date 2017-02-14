@@ -6,9 +6,8 @@ function renderTommyIframe(slug) {
   return `
 <div class="post-iframe_placeholder--tommy">
   <div class="post-iframe_wrapper--tommy">
-    <i class="action-button for-expand is-hidden" data-role="tommy-expander">expand</i>
-    <i class="action-button for-compress is-hidden" data-role="tommy-expander">back</i>
-    <iframe class="post-iframe--tommy" src="${BASE_URL}${slug}"></iframe>
+    <button class="post-iframe_button--tommy is-hidden" data-role="load-exercise">Load the exercise</button>
+    <iframe class="post-iframe--tommy" data-src="${BASE_URL}${slug}"></iframe>
   </div>
 </div>
 `

@@ -11,49 +11,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 150px 150px;
-}
-
-.post-iframe_wrapper--tommy .action-button {
-  background-color: #ffad33;
-  border: solid 1px #d18515;
-  border-radius: 5px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 1px rgba(0,0,0,0.2);
-  color: #eee;
-  cursor: pointer;
-  font-size: 12px;
-  line-height: 12px;
-  opacity: 0;
-  padding: 8px;
-  position: absolute;
-  right: 15px;
-  top: 9px;
-  transition: opacity 200ms;
-  transition-delay: 500ms;
-}
-
-.post-iframe_wrapper--tommy:hover .action-button {
-  opacity: 0.8;
-  transition-delay: 0ms;
-}
-
-.post-iframe_wrapper--tommy .action-button:hover {
-  opacity: 1;
-}
-
-.post-iframe_wrapper--tommy .action-button:active {
-  opacity: 0.8;
-}
-
-.post-iframe_wrapper--tommy:not(.is-expanded) .for-compress {
-  visibility: hidden;
-}
-
-.post-iframe_wrapper--tommy.is-expanded .for-expand {
-  visibility: hidden;
-}
-
-.post-iframe_wrapper--tommy .fa.is-hidden {
-  display: none;
+  padding: 1em;
 }
 
 .post-iframe--tommy {
@@ -62,10 +20,35 @@
   width: 100%;
 }
 
+.post-iframe_button--tommy {
+  background-color: #ffad33;
+  border: solid 1px #d18515;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 1px rgba(0,0,0,0.2);
+  color: #eee;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  padding: 0.8em;
+  transition: opacity 200ms;
+}
+
+.post-iframe_button--tommy:hover,
+.post-iframe_button--tommy:focus {
+  opacity: 1;
+}
+
+.post-iframe_button--tommy.is-hidden {
+  display: none;
+}
+
 .post-iframe_wrapper--tommy.is-expanded {
   margin: 0;
+  padding: 0;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 2em;
+  right: 2em;
   z-index: 999;
 }
