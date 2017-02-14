@@ -10,7 +10,7 @@ config = {
         database: {
             client: 'postgres',
             connection: process.env.DATABASE_URL,
-            pool: { min: 0, max: 2 }
+            pool: { min: 0, max: 5 }
         },
 
         server: {
