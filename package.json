@@ -22,7 +22,7 @@
     "express": "^4.13.3",
     "extract-css-block-webpack-plugin": "^1.3.0",
     "extract-text-webpack-plugin": "^2.0.0-beta",
-    "ghost": "ertrzyiks/Ghost#a95dcd69560ff3976944bb48b4eb71c894deb4a6",
+    "ghost": "0.11.5",
     "ghost-app": "tryghost/Ghost-App#4998153",
     "ghost-cloudinary-store": "ertrzyiks/ghost-cloudinary-store#update_ghost_0.10.0",
     "node-sass": "^4.5.0",
