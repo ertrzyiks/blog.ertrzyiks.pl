@@ -428,7 +428,8 @@ pre[class*="language-"] {
   white-space: nowrap; }.category-title_prefix {
   color: #999;
   font-weight: normal;
-  white-space: normal; }.error-header {
+  white-space: normal; }.category-description {
+  color: #999; }.error-header {
   letter-spacing: 2px;
   text-align: center; }.error-title {
   font-weight: normal; }.error-subtitle {
