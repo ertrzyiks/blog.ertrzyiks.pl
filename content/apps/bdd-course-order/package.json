@@ -1,0 +1,12 @@
+{
+  "name":"bdd-course-order",
+  "version": "0.0.1",
+  "dependencies": {
+    "ghost-app": "tryghost/Ghost-App#4998153"
+  },
+  "ghost": {
+    "permissions": {
+      "filters": ["prePostsRender", "ghost_head", "ghost_foot"]
+    }
+  }
+}
