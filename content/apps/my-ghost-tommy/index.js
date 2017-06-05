@@ -19,9 +19,13 @@ function replaceWithTommyIframe(html) {
   })
 }
 
+const cssUrl = '/assets/my-ghost-tommy/css/tommy.css?v=1'
+const jsUrl = '/assets/my-ghost-tommy/js/tommy.js?v=1'
+
 var MyApp = App.extend({
   filters: {
     prePostsRender: 'handlePrePostRender',
+    ghost_head: 'handleGhostHead',
     ghost_foot: 'handleGhostFoot',
   },
   handlePrePostRender: function (post) {
@@ -31,12 +35,21 @@ var MyApp = App.extend({
     return post;
   },
 
-  handleGhostFoot: function (foot) {
-    const cssUrl = '/assets/my-ghost-tommy/css/tommy.css?v=1'
-    foot.push(`<link rel="stylesheet" type="text/css" href="${cssUrl}">\n`)
+  handleGhostHead: function (head) {
+    head.push(`<link rel="preload" href="${cssUrl}" as="style">`)
+    return head;
+  },
 
-    const jsUrl = '/assets/my-ghost-tommy/js/tommy.js?v=1'
-    foot.push(`<script src="${jsUrl}"></script>\n`)
+  handleGhostFoot: function (foot) {
+    foot.push(`<script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '${cssUrl}';
+      link.type = 'text/css';
+      var ref = document.getElementsByTagName('link')[0];
+      ref.parentNode.insertBefore(link, ref);
+    </script>`)
+    foot.push(`<script async defer src="${jsUrl}"></script>\n`)
 
     return foot
   }
