@@ -12,7 +12,11 @@ module.exports = {
     loaders: [
       {
         test: /\.sass$/,
-        use: ExtractTextPlugin.extract({ use:['css-loader', 'postcss-loader', 'sass-loader'], fallback: 'style-loader' })
+        use: ExtractTextPlugin.extract({ use:[
+          'css-loader?minimize=true',
+          'postcss-loader',
+          'sass-loader'
+        ], fallback: 'style-loader' })
       }
     ]
   },
