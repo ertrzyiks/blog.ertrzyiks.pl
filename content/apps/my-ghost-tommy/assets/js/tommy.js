@@ -2,6 +2,7 @@
   var buttons = document.querySelectorAll('[data-role="load-exercise"]')
 
   buttons.forEach(function (el) {
+    el.style.display = ''
     el.classList.remove('is-hidden')
     el.addEventListener('click', onClick)
   });
