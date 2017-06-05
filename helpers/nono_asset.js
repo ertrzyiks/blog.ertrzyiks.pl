@@ -1,13 +1,26 @@
 const path = require('path')
 const fs = require('fs')
 
+const INLINE_ASSETS = ['compiled']
+
 var _assetHashes
+var _cache = {}
+
+if (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV !== '') {
+  INLINE_ASSETS.forEach((name) => {
+    const assetHashes = getAssetHashes()
+    const hash = assetHashes[name]
+    const filePath = path.resolve(__dirname, '../content/themes/nono/assets/css', name + '-' + hash + '.css')
+
+    _cache[name] = fs.readFileSync(filePath).toString()
+  })
+}
 
 function getAssetHashes() {
   _assetHashes = _assetHashes || {
-    compiled: getHash('compiled'),
-    fallback: getHash('fallback')
-  }
+      compiled: getHash('compiled'),
+      fallback: getHash('fallback')
+    }
 
   return _assetHashes
 }
@@ -34,10 +47,39 @@ function getWebpackDevServerAssetPath(name) {
   return `/dev/assets/${name}.css?q=${cacheBuster}`
 }
 
-module.exports = function (name) {
+function pathHelper(name) {
   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === '') {
     return getWebpackDevServerAssetPath(name)
   }
 
   return getProductioAssetPath(name)
+}
+
+function linkHelper(name) {
+  return `<link rel="stylesheet" type='text/css' href="${pathHelper(name)}"/>`
+}
+
+function inlineHelper(name) {
+  if (!_cache[name]) {
+    throw new Error(`Can't inline asset: ${name}`)
+  }
+
+  return _cache[name]
+}
+
+function hasInlineVersionHelper(name, options) {
+  var fnTrue = options.fn,
+      fnFalse = options.inverse;
+
+  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === '') {
+    return fnFalse(this)
+  }
+
+  return name in _cache ? fnTrue(this) : fnFalse(this);
+}
+
+module.exports = {
+  path: pathHelper,
+  inline: inlineHelper,
+  hasInlineVersion: hasInlineVersionHelper
 }
