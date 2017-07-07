@@ -40,6 +40,7 @@ ghost({
         app.use(useWebpackDevServer())
     }
 
+    app.use('/', express.static(__dirname + '/content/favicon/'))
     app.use('/assets/', tommyAssets)
     app.use(ghostServer.rootApp)
 
