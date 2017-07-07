@@ -21,18 +21,23 @@
 }
 
 .post-iframe_button--tommy {
-  background-color: #ffad33;
-  border: solid 1px #d18515;
-  border-radius: 5px;
+  background-color: #4be625;
+  border: solid 1px #55d115;
+  border-radius: 16px;
+  bottom: 140px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 1px rgba(0,0,0,0.2);
-  color: #eee;
+  color: #fff;
   cursor: pointer;
   font-size: 16px;
   line-height: 16px;
+  left: 50%;
   letter-spacing: 1px;
+  margin-left: -100px;
   opacity: 0.8;
   padding: 0.8em;
+  position: absolute;
   transition: opacity 200ms;
+  width: 200px;
 }
 
 .post-iframe_button--tommy:hover,
