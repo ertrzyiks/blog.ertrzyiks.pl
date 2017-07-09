@@ -1,0 +1,26 @@
+{{#has tag="bdd-course"}}
+  {{#get "posts" include="tags" filter="tags:bdd-course+id:-{{id}}" limit="3"}}
+    <div class="related_posts">
+      <h3 class="related_posts-header">Read also:</h3>
+
+      <div class="related_posts-inner">
+        {{#foreach posts}}
+          <a class="related_post" href="{{url}}">
+            {{#if image}}
+            <div class="related_post-thumbnail">
+              <img
+                class="related_post-thumbnail_image"
+                src="{{thumbnail image}}"
+                alt="the hand made image dedicated to the post number {{id}}" />
+            </div>
+            {{/if}}
+
+            <div class="related_post-title">
+              {{title}}
+            </div>
+          </a>
+        {{/foreach}}
+      </div>
+    </div>
+  {{/get}}
+{{/has}}
