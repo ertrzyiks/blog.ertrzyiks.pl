@@ -28,6 +28,7 @@
     "node-sass": "^4.5.0",
     "postcss-loader": "^1.2.2",
     "raven": "^2.1.1",
+    "raven-js": "^3.17.0",
     "sass-loader": "^4.1.1",
     "slugify": "^1.0.2",
     "statsd-client": "^0.2.2",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "sqlite3": "^3.1.4",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack-dev-middleware": "^1.10.0"
   }
 }

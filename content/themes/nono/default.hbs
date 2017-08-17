@@ -11,10 +11,10 @@
 
     {{> modernizr}}
 
-    {{#nono_has_inline_asset "compiled"}}
-      <style>{{nono_asset_inline "compiled"}}</style>
+    {{#nono_has_inline_asset "css/compiled"}}
+      <style>{{nono_asset_inline "css/compiled"}}</style>
 		{{else}}
-		  <link rel="stylesheet" type='text/css' href="{{nono_asset_path "compiled"}}"/>
+		  <link rel="stylesheet" type='text/css' href="{{nono_asset_path "css/compiled"}}"/>
     {{/nono_has_inline_asset}}
 
 		<script>
@@ -25,7 +25,7 @@
 
           link.type = 'text/css'
           link.rel = 'stylesheet'
-          link.href = "{{nono_asset_path "fallback"}}"
+          link.href = "{{nono_asset_path "css/fallback"}}"
 
           head.appendChild(link)
         }
@@ -62,5 +62,7 @@
 		</footer>
 
 		{{ghost_foot}}
+
+    <script async src="{{nono_asset_path "js/lib/raven"}}"></script>
 	</body>
 </html>

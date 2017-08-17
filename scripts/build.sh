@@ -1,27 +1,30 @@
 #!/bin/sh
 
-OUTPUT_DIR="$(pwd)/content/themes/nono/assets/css/"
+CSS_OUTPUT_DIR="$(pwd)/content/themes/nono/assets/css"
+JS_OUTPUT_DIR="$(pwd)/content/themes/nono/assets/js/lib"
 BUILD_DIR="$(pwd)/build/"
 
-echo "$(pwd)/$OUTPUT_DIR"
+echo "$(pwd)/$CSS_OUTPUT_DIR"
 mv_with_hash(){
-  CSS_FILE=./build/${1}.css
-  HASH=`openssl sha1 $CSS_FILE | awk '{print $2}'`
-  echo ${HASH:0:7} > "$2/${1}.hash"
-  mv $CSS_FILE "$2/$1-${HASH:0:7}.css";
+  ASSET_FILE=./build/${1}.${2}
+  HASH=`openssl sha1 $ASSET_FILE | awk '{print $2}'`
+  echo ${HASH:0:7} > "$3/${1}.hash"
+  mv $ASSET_FILE "$3/$1-${HASH:0:7}.${2}";
 }
 
 
 # Cleanup
 rm ${BUILD_DIR}*
-rm ${OUTPUT_DIR}*
+rm ${CSS_OUTPUT_DIR}/*
+rm ${JS_OUTPUT_DIR}/*
 
 # Compile
-webpack
+NODE_ENV=production webpack
 
 # Move to the OUTPUT
-mv_with_hash compiled $OUTPUT_DIR
-mv_with_hash fallback $OUTPUT_DIR
+mv_with_hash compiled css $CSS_OUTPUT_DIR
+mv_with_hash fallback css $CSS_OUTPUT_DIR
+mv_with_hash raven js $JS_OUTPUT_DIR
 
 # Another cleanup
 rm ${BUILD_DIR}*
