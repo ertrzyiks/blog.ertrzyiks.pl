@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const INLINE_ASSETS = ['compiled']
+const INLINE_ASSETS = ['css/compiled']
 
 var _assetHashes
 var _cache = {}
@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV !== '') {
   INLINE_ASSETS.forEach((name) => {
     const assetHashes = getAssetHashes()
     const hash = assetHashes[name]
-    const filePath = path.resolve(__dirname, '../content/themes/nono/assets/css', name + '-' + hash + '.css')
+    const filePath = path.resolve(__dirname, '../content/themes/nono/assets', name + '-' + hash + '.css')
 
     _cache[name] = fs.readFileSync(filePath).toString()
   })
@@ -18,33 +18,38 @@ if (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV !== '') {
 
 function getAssetHashes() {
   _assetHashes = _assetHashes || {
-      compiled: getHash('compiled'),
-      fallback: getHash('fallback')
+      'css/compiled': getHash('css/compiled'),
+      'css/fallback': getHash('css/fallback'),
+      'js/lib/raven': getHash('js/lib/raven')
     }
 
   return _assetHashes
 }
 
 function getHash(name) {
-  const hashFilePath = path.resolve(__dirname, '../content/themes/nono/assets/css', name + '.hash')
+  const hashFilePath = path.resolve(__dirname, '../content/themes/nono/assets', name + '.hash')
   const hash = fs.readFileSync(hashFilePath).toString().trim()
 
   return hash
 }
 
-function getProductioAssetPath(name) {
+function getProductionAssetPath(name) {
   const assetHashes = getAssetHashes()
   const hash = assetHashes[name]
   if (!hash) {
     throw new Error(`Can not find asset '${name}'.`)
   }
 
-  return `/assets/css/${name}-${hash}.css`
+  const extension = name.indexOf('css/') == 0 ? 'css' : 'js'
+
+  return `/assets/${name}-${hash}.${extension}`
 }
 
 function getWebpackDevServerAssetPath(name) {
   const cacheBuster = Math.random()
-  return `/dev/assets/${name}.css?q=${cacheBuster}`
+  const filename = name.split('/').pop()
+  const extension = name.indexOf('css/') == 0 ? 'css' : 'js'
+  return `/dev/assets/${filename}.${extension}?q=${cacheBuster}`
 }
 
 function pathHelper(name) {
@@ -52,7 +57,7 @@ function pathHelper(name) {
     return getWebpackDevServerAssetPath(name)
   }
 
-  return getProductioAssetPath(name)
+  return getProductionAssetPath(name)
 }
 
 function linkHelper(name) {
