@@ -8,3 +8,8 @@ To start server use
 ```
 npm start
 ```
+
+To rebuild assets user
+```
+npm run build
+```
