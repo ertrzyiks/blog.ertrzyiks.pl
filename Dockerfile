@@ -2,6 +2,7 @@ FROM node:6.9.3
 
 ENV PORT 80
 
+ADD ./CHECKS /app/CHECKS
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
