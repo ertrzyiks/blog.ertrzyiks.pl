@@ -13,13 +13,6 @@ Raven.config(process.env.SENTRY_DSN, {
     environment: process.env.NODE_ENV
 }).install()
 
-var gatherStats = function () {
-    return require('./middlewares/statsd')({
-        host: process.env.STATSD_HOST || '127.0.0.1',
-        prefix: process.env.STATSD_PREFIX || 'blog-ertrzyiks-pl'
-    })
-}
-
 var useWebpackDevServer = function () {
     var webpackDevMiddleware = require("webpack-dev-middleware")
     var webpack = require("webpack")
@@ -37,10 +30,6 @@ ghost({
     config: path.join(__dirname, 'config.js')
 }).then(function (ghostServer) {
     app.use(Raven.requestHandler())
-
-    if (process.env.NODE_ENV === 'production') {
-      app.use(gatherStats())
-    }
 
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === '') {
         app.use(useWebpackDevServer())
