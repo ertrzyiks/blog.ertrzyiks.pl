@@ -1,11 +1,16 @@
 (function () {
-  var buttons = document.querySelectorAll('[data-role="load-exercise"]')
+  var buttons = document.querySelectorAll('[data-role="load-exercise"]'),
+      buttonsLength = buttons.length;
 
-  buttons.forEach(function (el) {
+  for (var i = 0; i < buttonsLength; i++) {
+    enableButton(buttons[i]);
+  }
+
+  function enableButton(el) {
     el.style.display = ''
     el.classList.remove('is-hidden')
     el.addEventListener('click', onClick)
-  });
+  }
 
   function onClick(e) {
     var target = e.currentTarget;
