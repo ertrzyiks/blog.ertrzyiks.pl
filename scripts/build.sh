@@ -12,6 +12,10 @@ mv_with_hash(){
   mv $ASSET_FILE "$3/$1-${HASH:0:7}.${2}";
 }
 
+mv_fonts(){
+  mkdir -p "$1/fonts"
+  mv ./build/fonts/  "$1"
+}
 
 # Cleanup
 rm ${BUILD_DIR}*
@@ -25,7 +29,9 @@ NODE_ENV=production webpack
 mv_with_hash compiled css $CSS_OUTPUT_DIR
 mv_with_hash fallback css $CSS_OUTPUT_DIR
 mv_with_hash raven js $JS_OUTPUT_DIR
+mv_fonts $CSS_OUTPUT_DIR
 
 # Another cleanup
 rm ${BUILD_DIR}*
+rm ${BUILD_DIR}**/*
 
