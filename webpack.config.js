@@ -24,6 +24,10 @@ module.exports = {
           'postcss-loader',
           'sass-loader'
         ], fallback: 'style-loader' })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: 'file-loader?outputPath=fonts/'
       }
     ]
   },
