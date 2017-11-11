@@ -27,14 +27,19 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        use: 'file-loader?outputPath=fonts/'
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: 'fonts/',
+            publicPath: process.env.NODE_ENV == 'production' ? '/assets/css/' : ''
+          }
+        }
       }
     ]
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: 'compiled.css',
-      publicPath: process.env.NODE_ENV == 'production' ? '/assets/css/' : ''
+      filename: 'compiled.css'
     }),
     new ExtractCssBlockPlugin(),
     new UglifyJSPlugin(),
