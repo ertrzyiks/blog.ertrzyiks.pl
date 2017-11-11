@@ -32,7 +32,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('compiled.css'),
+    new ExtractTextPlugin({
+      filename: 'compiled.css',
+      publicPath: process.env.NODE_ENV == 'production' ? '/assets/css/' : ''
+    }),
     new ExtractCssBlockPlugin(),
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({
